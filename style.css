@@ -163,3 +163,53 @@ html, body {
 ::-webkit-scrollbar {
     display: none;
 }
+
+
+/* ======= POP UP ========= */
+
+.equipe_designer {
+    text-transform: uppercase;
+    font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color: #ebebeb;
+    background-color: #BB0000;
+    font-size: 13px;
+    border-radius: 15px;
+    padding: 10px 75px;
+    text-align: center;
+    margin-bottom: 13px;
+    box-shadow: 8px 8px 8px -4px rgba(0,0,0,0.34);
+}
+
+.card_bonus_malus {
+    width: inherit;
+    height: 190px;
+    background-color: #fff;
+    border: 1px solid #0098FF;
+    border-radius: 21px;
+    text-transform: uppercase;
+    color: #0098ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 30px;
+    box-shadow: 8px 8px 8px -4px rgba(0,0,0,0.34);
+}
+.card_bonus_malus h2 {
+    font-family: 'Segoe UI Black', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    position: relative;
+}
+
+.card_bonus_malus h2::before {
+    position: absolute;
+    content: url('img/exclamation_pict.svg');
+    left: -50px;
+}
+
+.card_bonus_malus h2::after {
+    position: absolute;
+    content: url('img/exclamation_pict.svg');
+    right: -50px;
+}
