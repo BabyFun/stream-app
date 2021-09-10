@@ -18,10 +18,10 @@
             <p class="subtitle_time">temps de jeu</p>
         </div>
         <div class="score">
-            <div class="blue_score">
+            <div class="blue_score" id="red_score">
                 <p>5</p>
             </div>
-            <div class="yellow_score">
+            <div class="yellow_score" id="blue_score">
                 <p>3</p>
             </div>
         </div>
@@ -61,5 +61,40 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="script.js"></script>
+<script src="http://babyfun.local:6001/socket.io/socket.io.js"></script>
+<script>
+    const pointsRed = document.getElementById("red_score");
+    const pointsBlue = document.getElementById("blue_score");
+
+    var socket = io('http://babyfun.local:6001', { transports : ['websocket'] });
+
+    var chrono = false;
+
+    socket.on('partieStatus', function(value) {
+        if(value == 'open') {
+            document.getElementsByClassName('container_popUp')[0].style.display = 'none';
+            document.getElementsByClassName('live')[0].style.opacity = '1';
+            chrono = true;
+            // updateChrono();
+        } else {
+            pointsRed.innerHTML = '-';
+            pointsBlue.innerHTML = '-';
+            document.getElementsByClassName('container_popUp')[0].style.display = 'none';
+            document.getElementsByClassName('live')[0].style.opacity = '.5';
+            chrono = false;
+            document.getElementById("minutes").innerHTML = '-';
+            document.getElementById("seconds").innerHTML = '-';
+        }
+    });
+
+    socket.on('pointsRed', function(value) {
+        pointsRed.innerHTML = value;
+        console.log(value);
+    });
+
+    socket.on('pointsBlue', function(value) {
+        pointsBlue.innerHTML = value;
+    });
+</script>
 </body>
 </html>
